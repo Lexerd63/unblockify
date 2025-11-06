@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unblockify</title>
+
+  <!-- Simple styling to make it look cleaner -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 { color: #58a6ff; }
+
+    input, button {
+      padding: 10px;
+      font-size: 1em;
+      margin: 10px;
+      border: none;
+      border-radius: 6px;
+    }
+
+    input {
+      width: 300px;
+    }
+
+    button {
+      background-color: #238636;
+      color: white;
+      cursor: pointer;
+    }
+
+    iframe {
+      margin-top: 20px;
+      width: 90%;
+      height: 600px;
+      border: 2px solid #30363d;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌐 Unblockify</h1>
+  <p>Enter a website URL to load through the proxy:</p>
+
+  <!-- User types a website URL here -->
+  <input id="url" type="text" placeholder="https://example.com">
+
+  <!-- Button to start loading -->
+  <button onclick="load()">Go</button>
+
+  <!-- Iframe where the website will appear -->
+  <iframe id="view"></iframe>
+
+  <script>
+    // This function runs when you click "Go"
+    function load() {
+      // Get the value from the input box
+      const url = document.getElementById("url").value;
+
+      // The iframe where we’ll show the site
+      const frame = document.getElementById("view");
+
+      // Your Railway backend URL (replace with your own!)
+      const proxyServer = "https://unblockify-production.up.railway.app";
+
+      // Tell the iframe to load your proxy with the chosen URL
+      // Example result: https://unblockify.../proxy?target=https://example.com
+      frame.src = `${proxyServer}/proxy?target=${encodeURIComponent(url)}`;
+    }
+  </script>
+</body>
+</html>
